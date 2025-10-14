@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm install:*)",
+      "Bash(npx prisma init:*)",
+      "Bash(npx prisma migrate dev:*)",
+      "Bash(pnpm start:dev:*)",
+      "Bash(curl:*)",
+      "Bash(npm start)",
+      "Bash(docker-compose up:*)",
+      "Bash(start \"\" \"C:\\Program Files\\Docker\\Docker\\Docker Desktop.exe\")",
+      "Bash(pnpm add:*)",
+      "Bash(node:*)",
+      "Bash(npx prisma migrate reset:*)",
+      "Bash(set \"PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=sim, continue\")",
+      "Bash($env:PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=\"sim, continue\")",
+      "Bash(taskkill:*)",
+      "Bash(cmd:*)",
+      "Bash(set PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=sim, continue)",
+      "Bash(set PRISMA_USER_CONSENT_FOR_DANGEROUS_AI_ACTION=sim)",
+      "Bash(dir prisma)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(python:*)",
+      "Read(//c/Users/Iago/Documents/Projetos/crm-imobiliadora/**)",
+      "Bash(pnpm create:*)",
+      "Bash(pnpm dlx create-next-app@latest:*)",
+      "Bash(pnpm dev:*)",
+      "Bash(pnpm remove:*)",
+      "Bash(pnpm run:*)",
+      "Bash(dir)",
+      "Bash(cat:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

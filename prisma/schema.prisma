@@ -1,0 +1,140 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id             String   @id @default(uuid())
+  nome           String
+  telefone       String
+  email          String?
+  endereco       String?
+  formaPagamento String?  // AVISTA, FINANCIADO, PARCELADO
+  origemLead     String?
+  cpfCnpj        String?
+  observacoes    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  negociacoes Negociacao[]
+  atividades  Atividade[]
+  tarefas     Tarefa[]
+
+  @@map("clientes")
+}
+
+model Imovel {
+  id             String   @id @default(uuid())
+  identificacao  String   @unique
+  status         String   // DISPONIVEL, PRE_RESERVA, VENDIDO, BLOQUEADO
+  vgv            Float
+  valor          Float?
+  descricao      String?
+  tipo           String?
+  endereco       String?
+  metragem       Float?
+  quartos        Int?
+  vagas          Int?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  negociacoes Negociacao[]
+
+  @@map("imoveis")
+}
+
+model Estagio {
+  id        String   @id @default(uuid())
+  nome      String   @unique
+  ordem     Int
+  cor       String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  negociacoes Negociacao[]
+
+  @@map("estagios")
+}
+
+model Negociacao {
+  id                String    @id @default(uuid())
+  clienteId         String
+  imovelId          String
+  estagioId         String
+  valor             Float?
+  formaPagamento    String?   // AVISTA, FINANCIADO, PARCELADO
+  valorEntrada      Float?
+  numeroParcelas    Int?
+  contratoAssinado  Boolean   @default(false)
+  dataAssinatura    DateTime?
+  dataVencimento    DateTime?
+  observacoes       String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  cliente Cliente @relation(fields: [clienteId], references: [id])
+  imovel  Imovel  @relation(fields: [imovelId], references: [id])
+  estagio Estagio @relation(fields: [estagioId], references: [id])
+
+  @@map("negociacoes")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  senha     String
+  role      String   // ADMIN, VENDEDOR, GERENTE
+  ativo     Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  atividades Atividade[]
+  tarefas    Tarefa[]
+
+  @@map("users")
+}
+
+model Atividade {
+  id          String   @id @default(uuid())
+  clienteId   String
+  usuarioId   String
+  tipo        String   // LIGACAO, EMAIL, REUNIAO, VISITA, WHATSAPP, OUTRO
+  descricao   String
+  data        DateTime
+  duracao     Int?     // em minutos
+  observacoes String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime?
+
+  cliente Cliente @relation(fields: [clienteId], references: [id])
+  usuario User    @relation(fields: [usuarioId], references: [id])
+
+  @@map("atividades")
+}
+
+model Tarefa {
+  id             String    @id @default(uuid())
+  titulo         String
+  descricao      String?
+  status         String    // PENDENTE, CONCLUIDA, ATRASADA
+  prioridade     String    // BAIXA, MEDIA, ALTA, URGENTE
+  dataVencimento DateTime
+  clienteId      String?
+  usuarioId      String
+  dataConclusao  DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime?
+
+  cliente Cliente? @relation(fields: [clienteId], references: [id])
+  usuario User     @relation(fields: [usuarioId], references: [id])
+
+  @@map("tarefas")
+}
