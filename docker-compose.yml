@@ -10,7 +10,6 @@ services:
       - PORT=3334
       - JWT_SECRET=your-super-secret-jwt-key-change-in-production
     volumes:
-      - ./prisma:/app/prisma
       - db-data:/app/prisma
     restart: unless-stopped
 
