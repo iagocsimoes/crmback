@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post, Param, Patch } from '@nestjs/common';
+import { Body, Controller, Get, Post, Param, Patch, Delete, HttpCode, HttpStatus } from '@nestjs/common';
 import { CreateNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/create-negociacao';
 import { MoveNegociacaoEstagioUseCase } from '@/domain/application/use-cases/negociacao/move-negociacao-estagio';
+import { DeleteNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/delete-negociacao';
 import { NegociacaoRepository } from '@/domain/application/repositories/negociacao-repository';
 import { CreateNegociacaoDto } from '../dtos/create-negociacao.dto';
 import { MoveNegociacaoDto } from '../dtos/move-negociacao.dto';
@@ -10,6 +11,7 @@ export class NegociacaoController {
   constructor(
     private createNegociacaoUseCase: CreateNegociacaoUseCase,
     private moveNegociacaoEstagioUseCase: MoveNegociacaoEstagioUseCase,
+    private deleteNegociacaoUseCase: DeleteNegociacaoUseCase,
     private negociacaoRepository: NegociacaoRepository,
   ) {}
 
@@ -124,5 +126,13 @@ export class NegociacaoController {
     });
 
     return { success: true };
+  }
+
+  @Delete(':id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(@Param('id') id: string) {
+    await this.deleteNegociacaoUseCase.execute({
+      negociacaoId: id,
+    });
   }
 }

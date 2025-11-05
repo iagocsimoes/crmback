@@ -19,6 +19,7 @@ import { UpdateImovelUseCase } from '@/domain/application/use-cases/imovel/updat
 import { CreateEstagioUseCase } from '@/domain/application/use-cases/estagio/create-estagio';
 import { CreateNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/create-negociacao';
 import { MoveNegociacaoEstagioUseCase } from '@/domain/application/use-cases/negociacao/move-negociacao-estagio';
+import { DeleteNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/delete-negociacao';
 import { GetDashboardMetricsUseCase } from '@/domain/application/use-cases/dashboard/get-dashboard-metrics';
 import { RegisterUserUseCase } from '@/domain/application/use-cases/auth/register-user';
 import { AuthenticateUserUseCase } from '@/domain/application/use-cases/auth/authenticate-user';
@@ -54,6 +55,7 @@ import { JwtAuthGuard } from './auth/jwt-auth.guard';
     CreateEstagioUseCase,
     CreateNegociacaoUseCase,
     MoveNegociacaoEstagioUseCase,
+    DeleteNegociacaoUseCase,
     GetDashboardMetricsUseCase,
     GetSalesReportUseCase,
     CreateAtividadeUseCase,
