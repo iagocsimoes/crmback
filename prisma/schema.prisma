@@ -76,6 +76,7 @@ model Negociacao {
   dataAssinatura    DateTime?
   dataVencimento    DateTime?
   observacoes       String?
+  canalVenda        String?   // Venda Direta - Wander, Venda Indireta, Relacionamento - Henrique
   createdAt         DateTime  @default(now())
   updatedAt         DateTime  @updatedAt
 

@@ -12,6 +12,7 @@ export interface NegociacaoProps {
     dataAssinatura?: Date;
     dataVencimento?: Date;
     observacoes?: string;
+    canalVenda?: string;
     createdAt: Date;
     updatedAt?: Date;
 }
@@ -36,6 +37,8 @@ export declare class Negociacao extends AggregateRoot<NegociacaoProps> {
     set dataVencimento(dataVencimento: Date | string | undefined);
     get observacoes(): string | undefined;
     set observacoes(observacoes: string | undefined);
+    get canalVenda(): string | undefined;
+    set canalVenda(canalVenda: string | undefined);
     get createdAt(): Date;
     get updatedAt(): Date | undefined;
     private touch;

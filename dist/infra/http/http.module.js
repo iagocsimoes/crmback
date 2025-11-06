@@ -28,6 +28,7 @@ const update_imovel_1 = require("../../domain/application/use-cases/imovel/updat
 const create_estagio_1 = require("../../domain/application/use-cases/estagio/create-estagio");
 const create_negociacao_1 = require("../../domain/application/use-cases/negociacao/create-negociacao");
 const move_negociacao_estagio_1 = require("../../domain/application/use-cases/negociacao/move-negociacao-estagio");
+const delete_negociacao_1 = require("../../domain/application/use-cases/negociacao/delete-negociacao");
 const get_dashboard_metrics_1 = require("../../domain/application/use-cases/dashboard/get-dashboard-metrics");
 const register_user_1 = require("../../domain/application/use-cases/auth/register-user");
 const authenticate_user_1 = require("../../domain/application/use-cases/auth/authenticate-user");
@@ -66,6 +67,7 @@ exports.HttpModule = HttpModule = __decorate([
             create_estagio_1.CreateEstagioUseCase,
             create_negociacao_1.CreateNegociacaoUseCase,
             move_negociacao_estagio_1.MoveNegociacaoEstagioUseCase,
+            delete_negociacao_1.DeleteNegociacaoUseCase,
             get_dashboard_metrics_1.GetDashboardMetricsUseCase,
             get_sales_report_1.GetSalesReportUseCase,
             create_atividade_1.CreateAtividadeUseCase,

@@ -7,6 +7,7 @@ interface CreateNegociacaoUseCaseRequest {
     estagioId: string;
     valor?: number;
     observacoes?: string;
+    canalVenda?: string;
 }
 interface CreateNegociacaoUseCaseResponse {
     negociacao: Negociacao;

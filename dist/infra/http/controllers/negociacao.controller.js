@@ -16,16 +16,19 @@ exports.NegociacaoController = void 0;
 const common_1 = require("@nestjs/common");
 const create_negociacao_1 = require("../../../domain/application/use-cases/negociacao/create-negociacao");
 const move_negociacao_estagio_1 = require("../../../domain/application/use-cases/negociacao/move-negociacao-estagio");
+const delete_negociacao_1 = require("../../../domain/application/use-cases/negociacao/delete-negociacao");
 const negociacao_repository_1 = require("../../../domain/application/repositories/negociacao-repository");
 const create_negociacao_dto_1 = require("../dtos/create-negociacao.dto");
 const move_negociacao_dto_1 = require("../dtos/move-negociacao.dto");
 let NegociacaoController = class NegociacaoController {
     createNegociacaoUseCase;
     moveNegociacaoEstagioUseCase;
+    deleteNegociacaoUseCase;
     negociacaoRepository;
-    constructor(createNegociacaoUseCase, moveNegociacaoEstagioUseCase, negociacaoRepository) {
+    constructor(createNegociacaoUseCase, moveNegociacaoEstagioUseCase, deleteNegociacaoUseCase, negociacaoRepository) {
         this.createNegociacaoUseCase = createNegociacaoUseCase;
         this.moveNegociacaoEstagioUseCase = moveNegociacaoEstagioUseCase;
+        this.deleteNegociacaoUseCase = deleteNegociacaoUseCase;
         this.negociacaoRepository = negociacaoRepository;
     }
     async create(body) {
@@ -37,6 +40,7 @@ let NegociacaoController = class NegociacaoController {
             estagioId: negociacao.estagioId.toString(),
             valor: negociacao.valor,
             observacoes: negociacao.observacoes,
+            canalVenda: negociacao.canalVenda,
             createdAt: negociacao.createdAt,
         };
     }
@@ -76,6 +80,7 @@ let NegociacaoController = class NegociacaoController {
             dataAssinatura: item.negociacao.dataAssinatura,
             dataVencimento: item.negociacao.dataVencimento,
             observacoes: item.negociacao.observacoes,
+            canalVenda: item.negociacao.canalVenda,
             createdAt: item.negociacao.createdAt,
             updatedAt: item.negociacao.updatedAt,
         }));
@@ -92,6 +97,7 @@ let NegociacaoController = class NegociacaoController {
             estagioId: negociacao.estagioId.toString(),
             valor: negociacao.valor,
             observacoes: negociacao.observacoes,
+            canalVenda: negociacao.canalVenda,
             createdAt: negociacao.createdAt,
         };
     }
@@ -116,6 +122,8 @@ let NegociacaoController = class NegociacaoController {
             negociacao.dataVencimento = body.dataVencimento;
         if (body.observacoes !== undefined)
             negociacao.observacoes = body.observacoes;
+        if (body.canalVenda !== undefined)
+            negociacao.canalVenda = body.canalVenda;
         await this.negociacaoRepository.save(negociacao);
         return { success: true };
     }
@@ -125,6 +133,11 @@ let NegociacaoController = class NegociacaoController {
             novoEstagioId: body.novoEstagioId,
         });
         return { success: true };
+    }
+    async delete(id) {
+        await this.deleteNegociacaoUseCase.execute({
+            negociacaoId: id,
+        });
     }
 };
 exports.NegociacaoController = NegociacaoController;
@@ -164,10 +177,19 @@ __decorate([
     __metadata("design:paramtypes", [String, move_negociacao_dto_1.MoveNegociacaoDto]),
     __metadata("design:returntype", Promise)
 ], NegociacaoController.prototype, "moverEstagio", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], NegociacaoController.prototype, "delete", null);
 exports.NegociacaoController = NegociacaoController = __decorate([
     (0, common_1.Controller)('negociacoes'),
     __metadata("design:paramtypes", [create_negociacao_1.CreateNegociacaoUseCase,
         move_negociacao_estagio_1.MoveNegociacaoEstagioUseCase,
+        delete_negociacao_1.DeleteNegociacaoUseCase,
         negociacao_repository_1.NegociacaoRepository])
 ], NegociacaoController);
 //# sourceMappingURL=negociacao.controller.js.map

@@ -30,6 +30,7 @@ let CreateNegociacaoUseCase = class CreateNegociacaoUseCase {
             valor: request.valor,
             contratoAssinado: false,
             observacoes: request.observacoes,
+            canalVenda: request.canalVenda,
         });
         await this.negociacaoRepository.create(negociacao);
         const imovel = await this.imovelRepository.findById(request.imovelId);

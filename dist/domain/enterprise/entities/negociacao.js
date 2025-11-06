@@ -72,6 +72,13 @@ class Negociacao extends aggregate_root_1.AggregateRoot {
         this.props.observacoes = observacoes;
         this.touch();
     }
+    get canalVenda() {
+        return this.props.canalVenda;
+    }
+    set canalVenda(canalVenda) {
+        this.props.canalVenda = canalVenda;
+        this.touch();
+    }
     get createdAt() {
         return this.props.createdAt;
     }

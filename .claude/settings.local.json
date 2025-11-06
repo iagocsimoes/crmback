@@ -29,7 +29,8 @@
       "Bash(pnpm remove:*)",
       "Bash(pnpm run:*)",
       "Bash(dir)",
-      "Bash(cat:*)"
+      "Bash(cat:*)",
+      "Bash(npx prisma generate:*)"
     ],
     "deny": [],
     "ask": []

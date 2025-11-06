@@ -1,13 +1,15 @@
 import { CreateNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/create-negociacao';
 import { MoveNegociacaoEstagioUseCase } from '@/domain/application/use-cases/negociacao/move-negociacao-estagio';
+import { DeleteNegociacaoUseCase } from '@/domain/application/use-cases/negociacao/delete-negociacao';
 import { NegociacaoRepository } from '@/domain/application/repositories/negociacao-repository';
 import { CreateNegociacaoDto } from '../dtos/create-negociacao.dto';
 import { MoveNegociacaoDto } from '../dtos/move-negociacao.dto';
 export declare class NegociacaoController {
     private createNegociacaoUseCase;
     private moveNegociacaoEstagioUseCase;
+    private deleteNegociacaoUseCase;
     private negociacaoRepository;
-    constructor(createNegociacaoUseCase: CreateNegociacaoUseCase, moveNegociacaoEstagioUseCase: MoveNegociacaoEstagioUseCase, negociacaoRepository: NegociacaoRepository);
+    constructor(createNegociacaoUseCase: CreateNegociacaoUseCase, moveNegociacaoEstagioUseCase: MoveNegociacaoEstagioUseCase, deleteNegociacaoUseCase: DeleteNegociacaoUseCase, negociacaoRepository: NegociacaoRepository);
     create(body: CreateNegociacaoDto): Promise<{
         id: string;
         clienteId: string;
@@ -15,6 +17,7 @@ export declare class NegociacaoController {
         estagioId: string;
         valor: number | undefined;
         observacoes: string | undefined;
+        canalVenda: string | undefined;
         createdAt: Date;
     }>;
     findAll(): Promise<{
@@ -51,6 +54,7 @@ export declare class NegociacaoController {
         dataAssinatura: string | Date | undefined;
         dataVencimento: string | Date | undefined;
         observacoes: string | undefined;
+        canalVenda: string | undefined;
         createdAt: Date;
         updatedAt: Date | undefined;
     }[]>;
@@ -62,6 +66,7 @@ export declare class NegociacaoController {
         estagioId?: undefined;
         valor?: undefined;
         observacoes?: undefined;
+        canalVenda?: undefined;
         createdAt?: undefined;
     } | {
         id: string;
@@ -70,6 +75,7 @@ export declare class NegociacaoController {
         estagioId: string;
         valor: number | undefined;
         observacoes: string | undefined;
+        canalVenda: string | undefined;
         createdAt: Date;
         error?: undefined;
     }>;
@@ -83,4 +89,5 @@ export declare class NegociacaoController {
     moverEstagio(id: string, body: MoveNegociacaoDto): Promise<{
         success: boolean;
     }>;
+    delete(id: string): Promise<void>;
 }

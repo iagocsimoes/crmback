@@ -13,6 +13,7 @@ export interface NegociacaoProps {
   dataAssinatura?: Date;
   dataVencimento?: Date;
   observacoes?: string;
+  canalVenda?: string;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -104,6 +105,15 @@ export class Negociacao extends AggregateRoot<NegociacaoProps> {
 
   set observacoes(observacoes: string | undefined) {
     this.props.observacoes = observacoes;
+    this.touch();
+  }
+
+  get canalVenda() {
+    return this.props.canalVenda;
+  }
+
+  set canalVenda(canalVenda: string | undefined) {
+    this.props.canalVenda = canalVenda;
     this.touch();
   }
 

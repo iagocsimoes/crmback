@@ -10,6 +10,7 @@ interface CreateNegociacaoUseCaseRequest {
   estagioId: string;
   valor?: number;
   observacoes?: string;
+  canalVenda?: string;
 }
 
 interface CreateNegociacaoUseCaseResponse {
@@ -33,6 +34,7 @@ export class CreateNegociacaoUseCase {
       valor: request.valor,
       contratoAssinado: false,
       observacoes: request.observacoes,
+      canalVenda: request.canalVenda,
     });
 
     await this.negociacaoRepository.create(negociacao);

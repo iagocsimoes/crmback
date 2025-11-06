@@ -7,6 +7,7 @@ class CreateNegociacaoDto {
     estagioId;
     valor;
     observacoes;
+    canalVenda;
 }
 exports.CreateNegociacaoDto = CreateNegociacaoDto;
 //# sourceMappingURL=create-negociacao.dto.js.map

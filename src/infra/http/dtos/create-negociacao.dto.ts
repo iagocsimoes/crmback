@@ -4,4 +4,5 @@ export class CreateNegociacaoDto {
   estagioId: string;
   valor?: number;
   observacoes?: string;
+  canalVenda?: string;
 }

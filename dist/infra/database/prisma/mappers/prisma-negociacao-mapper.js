@@ -17,6 +17,7 @@ class PrismaNegociacaoMapper {
             dataAssinatura: raw.dataAssinatura ?? undefined,
             dataVencimento: raw.dataVencimento ?? undefined,
             observacoes: raw.observacoes ?? undefined,
+            canalVenda: raw.canalVenda ?? undefined,
             updatedAt: raw.updatedAt,
         }, new unique_entity_id_1.UniqueEntityID(raw.id));
     }
@@ -34,6 +35,7 @@ class PrismaNegociacaoMapper {
             dataAssinatura: negociacao.dataAssinatura ? new Date(negociacao.dataAssinatura) : null,
             dataVencimento: negociacao.dataVencimento ? new Date(negociacao.dataVencimento) : null,
             observacoes: negociacao.observacoes ?? null,
+            canalVenda: negociacao.canalVenda ?? null,
             createdAt: negociacao.createdAt,
             updatedAt: negociacao.updatedAt ?? new Date(),
         };

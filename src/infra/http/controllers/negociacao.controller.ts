@@ -26,6 +26,7 @@ export class NegociacaoController {
       estagioId: negociacao.estagioId.toString(),
       valor: negociacao.valor,
       observacoes: negociacao.observacoes,
+      canalVenda: negociacao.canalVenda,
       createdAt: negociacao.createdAt,
     };
   }
@@ -68,6 +69,7 @@ export class NegociacaoController {
       dataAssinatura: item.negociacao.dataAssinatura,
       dataVencimento: item.negociacao.dataVencimento,
       observacoes: item.negociacao.observacoes,
+      canalVenda: item.negociacao.canalVenda,
       createdAt: item.negociacao.createdAt,
       updatedAt: item.negociacao.updatedAt,
     }));
@@ -88,6 +90,7 @@ export class NegociacaoController {
       estagioId: negociacao.estagioId.toString(),
       valor: negociacao.valor,
       observacoes: negociacao.observacoes,
+      canalVenda: negociacao.canalVenda,
       createdAt: negociacao.createdAt,
     };
   }
@@ -109,6 +112,7 @@ export class NegociacaoController {
     if (body.dataAssinatura !== undefined) negociacao.dataAssinatura = body.dataAssinatura;
     if (body.dataVencimento !== undefined) negociacao.dataVencimento = body.dataVencimento;
     if (body.observacoes !== undefined) negociacao.observacoes = body.observacoes;
+    if (body.canalVenda !== undefined) negociacao.canalVenda = body.canalVenda;
 
     await this.negociacaoRepository.save(negociacao);
 
